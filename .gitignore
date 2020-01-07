@@ -1,0 +1,8 @@
+/source
+/plugins
+/data
+
+.DS_Store
+
+.idea
+.vscode
