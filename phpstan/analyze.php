@@ -6,12 +6,12 @@ declare(strict_types=1);
 echo "Running pmmp/phpstan analyzer\n";
 
 if(!is_dir("/source")) {
-	echo "/plugin is not mounted!\n";
+	echo "/source is not mounted!\n";
 	exit(1);
 }
 
 if(!is_readable("/source")) {
-	echo "/plugin is not readable by user 1000.\n";
+	echo "/source is not readable by user 1000.\n";
 	exit(1);
 }
 
