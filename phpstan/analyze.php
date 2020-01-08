@@ -1,27 +1,32 @@
-#!/usr/bin/env php -dmemory_limit=-1
+#!/usr/bin/env php
 <?php
 
 declare(strict_types=1);
 
 echo "Running pmmp/phpstan analyzer\n";
 
-if(!is_dir("/source")) {
-	echo "/source is not mounted!\n";
-	exit(1);
-}
+if(isset($argv[1])) {
+	$source = $argv[1];
+	echo "Source directory is defined as '{$source}'.\n";
 
-if(!is_readable("/source")) {
-	echo "/source is not readable by user 1000.\n";
-	exit(1);
-}
+	if(!is_dir($source)) {
+		echo "$source is not a directory.\n";
+		exit(1);
+	}
 
-chdir("/source");
+	if(!is_readable($source)) {
+		echo "$source is not readable by user 1000.\n";
+		exit(1);
+	}
+
+	chdir($source);
+}
 
 if(is_file("plugin.yml")) {
-	echo "plugin.yml found in /source.\n";
+	echo "plugin.yml found in '{$source}'.\n";
 
 	if(!is_dir("src")) {
-		echo "src not found in /source. Are the paths set correctly?\n";
+		echo "src not found in '{$source}'. Are the paths set correctly?\n";
 		exit(1);
 	}
 
@@ -48,7 +53,7 @@ if(is_file("plugin.yml")) {
 }
 
 if(is_file("composer.json")) {
-	echo "composer.json found in /source.\n";
+	echo "composer.json found in '{$source}'.\n";
 	passthru("composer install --no-suggest --no-progress -n -o", $result);
 	if($result !== 0) {
 		echo "Failed to install composer dependencies.";
@@ -56,7 +61,7 @@ if(is_file("composer.json")) {
 	}
 }
 
-$proc = proc_open("phpstan analyze -c {$_ENV["PHPSTAN_CONFIG"]}", [["file", "/dev/null", "r"], STDOUT, STDERR], $pipes);
+$proc = proc_open("phpstan analyze -n -c {$_ENV["PHPSTAN_CONFIG"]}", [["file", "/dev/null", "r"], STDOUT, STDERR], $pipes);
 if(is_resource($proc)) {
 	$code = proc_close($proc);
 	exit($code);

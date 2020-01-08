@@ -12,7 +12,6 @@ ADD phpstan.neon /pocketmine/phpstan.neon
 RUN mkdir /deps
 RUN chown 1000:1000 /pocketmine/phpstan.neon /deps -R
 
-USER pocketmine
-
 ENV PHPSTAN_CONFIG /pocketmine/phpstan.neon
-CMD analyze
+ENTRYPOINT ["analyze"]
+CMD []

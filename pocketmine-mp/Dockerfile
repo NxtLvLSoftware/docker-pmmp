@@ -46,7 +46,7 @@ ADD start.sh /usr/bin/start-pocketmine
 
 RUN mkdir /plugins /data
 RUN chown 1000:1000 /plugins /data . -R
-RUN chmod o+x /usr/bin/php
+RUN chmod o+x /usr/bin/php /usr/bin/start-pocketmine
 
 USER pocketmine
 
