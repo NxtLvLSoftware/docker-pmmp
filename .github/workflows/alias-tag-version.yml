@@ -1,0 +1,19 @@
+name: Alias Tag Version
+
+on: [repository_dispatch]
+
+jobs:
+  alias:
+
+    runs-on: ubuntu-latest
+
+    # only run if the event action is alias tag version
+    if: github.event.action == 'alias-tag-version'
+
+    steps:
+      - run: |
+          "${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin"
+          "docker pull nxtlvlsoftware/pmmp:${{ github.event.client_payload.existing }} && docker pull nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.existing }}"
+          "docker tag pmmp:${{ github.event.client_payload.existing }} nxtlvlsoftware/pmmp:${{ github.event.client_payload.tag }}"
+          "docker tag pmmp-phpstan:${{ github.event.client_payload.existing }} nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.tag }}"
+          "docker push nxtlvlsoftware/pmmp:${{ github.event.client_payload.tag }} && docker push nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.tag }}"
