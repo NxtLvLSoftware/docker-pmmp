@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 echo "Running pmmp/phpstan analyzer\n";
 
+$source = getcwd();
 if(isset($argv[1])) {
 	$source = $argv[1];
 	echo "Source directory is defined as '{$source}'.\n";
