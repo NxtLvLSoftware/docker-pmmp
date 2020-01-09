@@ -9,10 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: bagbyte/use-private-action@v0.0.1
+    - uses: nxtlvlsoftware/docker-pmmp-build-action@master
       with:
-        action: nxtlvlsoftware/docker-pmmp-build-action@master
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         tag: ${{ github.event.client_payload.tag }}
-        token: ${{ secrets.BUILD_ACTION_ACCESS_TOKEN }}
