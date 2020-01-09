@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - run: echo "${{ JSON.stringify(github.event) }}"
+    - run: echo "${{ toJson(github.event) }}"
     - uses: nxtlvlsoftware/docker-pmmp-build-action@master
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
