@@ -15,7 +15,7 @@ jobs:
       with:
         # allow targeting a build against any branch
         ref: ${{ github.event.client_payload.target_ref }}
-    - uses: ./.github/actions/build
+    - uses: ./.github/actions/build-publish
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
