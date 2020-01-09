@@ -12,8 +12,8 @@ jobs:
 
     steps:
       - run: |
-          "echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin"
-          "docker pull nxtlvlsoftware/pmmp:${{ github.event.client_payload.existing }} && docker pull nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.existing }}"
-          "docker tag pmmp:${{ github.event.client_payload.existing }} nxtlvlsoftware/pmmp:${{ github.event.client_payload.tag }}"
-          "docker tag pmmp-phpstan:${{ github.event.client_payload.existing }} nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.tag }}"
-          "docker push nxtlvlsoftware/pmmp:${{ github.event.client_payload.tag }} && docker push nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.tag }}"
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker pull nxtlvlsoftware/pmmp:${{ github.event.client_payload.existing }} && docker pull nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.existing }}
+          docker tag pmmp:${{ github.event.client_payload.existing }} nxtlvlsoftware/pmmp:${{ github.event.client_payload.tag }}
+          docker tag pmmp-phpstan:${{ github.event.client_payload.existing }} nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.tag }}
+          docker push nxtlvlsoftware/pmmp:${{ github.event.client_payload.tag }} && docker push nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.tag }}
