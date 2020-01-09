@@ -12,6 +12,7 @@ jobs:
 
     steps:
       - run: |
+          "apt-get install --no-install-recommends -y docker"
           "${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin"
           "docker pull nxtlvlsoftware/pmmp:${{ github.event.client_payload.existing }} && docker pull nxtlvlsoftware/pmmp-phpstan:${{ github.event.client_payload.existing }}"
           "docker tag pmmp:${{ github.event.client_payload.existing }} nxtlvlsoftware/pmmp:${{ github.event.client_payload.tag }}"
