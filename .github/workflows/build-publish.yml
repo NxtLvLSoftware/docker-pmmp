@@ -7,6 +7,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # only run if the event action is build & publish
+    if: github.event.action == 'build-publish'
+
     steps:
     - uses: actions/checkout@v1
       with:
