@@ -1,0 +1,20 @@
+name: "docker-pmmp-build"
+description: "Build docker-pmmp images & push to docker hub."
+inputs:
+  username:
+    description: "Username used to login docker registry."
+    required: true
+  password:
+    description: "Password used to login docker registry."
+    required: true
+  tag:
+    description: "The target pmmp tag to build an image for."
+    required: true
+  registry:
+    description: "Docker registry server address"
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.tag }}
