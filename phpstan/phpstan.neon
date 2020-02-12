@@ -1,4 +1,4 @@
-indludes:
+includes:
 	- /pocketmine/pocketmine.phpstan.neon
 	- /pocketmine/phpstan/rules/pm4-enum.phpstan.neon
 parameters:
