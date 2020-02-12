@@ -5,7 +5,7 @@ FROM ${IMAGE:-nxtlvlsoftware/pmmp}:${TAG}
 USER root
 RUN wget -qO - https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/bin/composer
-RUN wget -qO /usr/bin/phpstan https://github.com/phpstan/phpstan/releases/download/0.12.2/phpstan.phar
+RUN wget -qO /usr/bin/phpstan https://github.com/phpstan/phpstan/releases/download/0.12.9/phpstan.phar
 RUN chmod o+x /usr/bin/phpstan
 ADD analyze.php /usr/bin/analyze
 ADD default.phpstan.neon /pocketmine/default.phpstan.neon
