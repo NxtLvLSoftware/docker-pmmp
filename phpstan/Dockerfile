@@ -8,9 +8,10 @@ RUN mv composer.phar /usr/bin/composer
 RUN wget -qO /usr/bin/phpstan https://github.com/phpstan/phpstan/releases/download/0.12.2/phpstan.phar
 RUN chmod o+x /usr/bin/phpstan
 ADD analyze.php /usr/bin/analyze
-ADD phpstan.neon /pocketmine/phpstan.neon
+ADD default.phpstan.neon /pocketmine/default.phpstan.neon
+ADD pocketmine.phpstan.neon /pocketmine/pocketmine.phpstan.neon
 RUN mkdir /deps
-RUN chown 1000:1000 /pocketmine/phpstan.neon /deps -R
+RUN chown 1000:1000 /pocketmine/default.phpstan.neon /pocketmine/pocketmine.phpstan.neon /deps -R
 
 ENV PHPSTAN_CONFIG /pocketmine/phpstan.neon
 ENTRYPOINT ["analyze"]
