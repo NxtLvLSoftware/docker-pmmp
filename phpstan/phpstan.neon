@@ -1,6 +1,5 @@
 indludes:
 	- /pocketmine/pocketmine.phpstan.neon
-	- /pocketmine/phpstan/rules/pm4-enums.phpstan.neon
 parameters:
 	level: 5
 	paths:
