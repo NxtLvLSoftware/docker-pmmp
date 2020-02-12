@@ -11,7 +11,7 @@ ADD analyze.php /usr/bin/analyze
 ADD phpstan.neon /pocketmine/phpstan.neon
 ADD pocketmine.phpstan.neon /pocketmine/pocketmine.phpstan.neon
 RUN mkdir /deps
-RUN chown 1000:1000 /pocketmine/default.phpstan.neon /pocketmine/pocketmine.phpstan.neon /deps -R
+RUN chown 1000:1000 /pocketmine/phpstan.neon /pocketmine/pocketmine.phpstan.neon /deps -R
 
 # install custom rules
 RUN mkdir -p /pocketmine/phpstan/rules
