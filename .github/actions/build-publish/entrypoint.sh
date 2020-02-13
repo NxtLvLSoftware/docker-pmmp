@@ -19,6 +19,8 @@ fi
 
 echo "${INPUT_PASSWORD}" | docker login -u ${INPUT_USERNAME} --password-stdin ${INPUT_REGISTRY}
 
+export DOCKER_BUILDKIT=1
+
 # check if we should pull existing images to help speed up the build
 if [ "${INPUT_PULL}" == "true" ]; then
 	sh -c "docker pull nxtlvlsoftware/pmmp:'$TAG'"
