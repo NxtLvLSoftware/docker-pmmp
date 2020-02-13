@@ -26,10 +26,10 @@ if [ "${INPUT_PULL}" == "true" ]; then
 fi
 
 # build the base pmmp image
-sh -c "cd pocketmine-mp && docker build --cache-from='nxtlvlsoftware/pmmp:'$TAG'' -t nxtlvlsoftware/pmmp:'$TAG' --build-arg PMMP_TAG='$TAG' ."
+sh -c "cd pocketmine-mp && docker build --cache-from=nxtlvlsoftware/pmmp:'$TAG' -t nxtlvlsoftware/pmmp:'$TAG' --build-arg PMMP_TAG='$TAG' ."
 
 # build the pmmp phpstan image
-sh -c "cd phpstan && docker build -t --cache-from='nxtlvlsoftware/pmmp-phpstan:'$TAG'' nxtlvlsoftware/pmmp-phpstan:'$TAG' --build-arg TAG='$TAG' ."
+sh -c "cd phpstan && docker build --cache-from nxtlvlsoftware/pmmp-phpstan:'$TAG' -t nxtlvlsoftware/pmmp-phpstan:'$TAG' --build-arg TAG='$TAG' ."
 
 # publish the builds to docker hub
 sh -c "docker push nxtlvlsoftware/pmmp:'$TAG' && docker push nxtlvlsoftware/pmmp-phpstan:'$TAG'"
