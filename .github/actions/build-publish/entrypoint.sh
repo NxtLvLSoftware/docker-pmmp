@@ -19,6 +19,12 @@ fi
 
 echo "${INPUT_PASSWORD}" | docker login -u ${INPUT_USERNAME} --password-stdin ${INPUT_REGISTRY}
 
+# check if we should pull existing images to help speed up the build
+if [ "${INPUT_PULL}" == "true" ]; then
+	sh -c "docker pull nxtlvlsoftware/pmmp:'$TAG'"
+	sh -c "docker pull nxtlvlsoftware/pmmp-phpstan:'$TAG'"
+fi
+
 # build the base pmmp image
 sh -c "cd pocketmine-mp && docker build -t nxtlvlsoftware/pmmp:'$TAG' --build-arg PMMP_TAG='$TAG' ."
 
