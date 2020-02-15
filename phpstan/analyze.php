@@ -62,7 +62,7 @@ if(is_file("composer.json")) {
 	}
 }
 
-$proc = proc_open("phpstan -drecursionguard.enabled=1 analyze --debug --memory-limit=2G -c {$_ENV["PHPSTAN_CONFIG"]}", [["file", "/dev/null", "r"], STDOUT, STDERR], $pipes);
+$proc = proc_open("phpstan analyze --debug --memory-limit=2G -c {$_ENV["PHPSTAN_CONFIG"]}", [["file", "/dev/null", "r"], STDOUT, STDERR], $pipes);
 if(is_resource($proc)) {
 	$code = proc_close($proc);
 	exit($code);
