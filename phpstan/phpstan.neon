@@ -1,4 +1,4 @@
-indludes:
+includes:
 	- /pocketmine/pocketmine.phpstan.neon
 parameters:
 	level: 5
